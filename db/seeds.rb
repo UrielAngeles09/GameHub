@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Notification.create!(
+  title: "Starfield Just Got a Major Update!",
+  body: "Bethesda dropped a huge patch with performance fixes and more quests.",
+  link: "https://www.bethesda.net/en/game/starfield",
+)
+
+Notification.create!(
+  title: "Your watched game 'Elden Ring DLC' now has a trailer!",
+  body: "FromSoftware has released a new trailer for the Shadow of the Erdtree DLC.",
+  link: "https://www.youtube.com/watch?v=V9V7XX0QSRs",
+)

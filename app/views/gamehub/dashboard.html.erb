@@ -110,12 +110,16 @@
     <!-- Notifications Section -->
     <div style="flex: 1; background-color: var(--light-gray); padding: 1rem; border-radius: 0.5rem; max-height: 300px; overflow-y: auto; box-shadow: 0 0 8px rgba(0,0,0,0.05);">
       <h2 style="margin-bottom: 1rem;">🔔 Notifications</h2>
-  
+        
       <% if @notifications %>
-        <ul style="list-style: none;">
+        <ul style="list-style: none; padding-left: 0;">
           <% @notifications.each do |note| %>
-            <li style="margin-bottom: 0.5rem; <%= 'font-weight: bold;' unless note.read %>">
-              <%= note.message %>
+            <li style="margin-bottom: 1rem; <%= 'font-weight: bold;' unless note.read %>">
+              <strong><%= note.title %></strong><br>
+              <p><%= truncate(note.body, length: 150) %></p>
+              <% if note.link.present? %>
+                <a href="<%= note.link %>" target="_blank">Read more</a>
+              <% end %>
             </li>
           <% end %>
         </ul>
