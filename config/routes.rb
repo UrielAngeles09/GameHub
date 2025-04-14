@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   
   get "home", to: "gamehub#home"
   post "home", to: "gamehub#home"
+  get "gamedetails", to: "gamehub#gamedetails"
   get "dashboard", to: "gamehub#dashboard"
 end
