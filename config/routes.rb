@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dashboard/index"
   get "gamehub/index"
   resource :session
   resources :passwords, param: :token

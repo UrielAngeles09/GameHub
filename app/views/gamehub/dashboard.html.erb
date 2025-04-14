@@ -85,8 +85,45 @@
   <!-- Content Here -->
   <div class="space-y-4">
     <div class="flex justify-between items-center">
-        <h1> Dashboard Page </h1
-        <p> (Content Here) </p>
+    <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+  
+    <!-- Watch List Section -->
+    <div style="flex: 2; background-color: var(--white); padding: 1rem; border-radius: 0.5rem; box-shadow: 0 0 8px rgba(0,0,0,0.05);">
+      <h2 style="margin-bottom: 1rem;">🎮 Your Watch List</h2>
+  
+      <% if @watch_list_games %>
+        <ul style="list-style: none;">
+          <% @watch_list_games.each do |game| %>
+            <li style="margin-bottom: 0.75rem;">
+              <strong><%= game.title %></strong> – Releases on <%= game.release_date.strftime("%B %d, %Y") %>
+  
+              <!-- Optional: Remove from list -->
+              <%= button_to "Remove", watch_list_path(game_id: game.id), method: :delete, style: "margin-left: 1rem; background-color: var(--light-blue); color: white; padding: 0.25rem 0.5rem; border: none; border-radius: 0.25rem;" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>You haven't added any games to your watch list yet.</p>
+      <% end %>
+    </div>
+  
+    <!-- Notifications Section -->
+    <div style="flex: 1; background-color: var(--light-gray); padding: 1rem; border-radius: 0.5rem; max-height: 300px; overflow-y: auto; box-shadow: 0 0 8px rgba(0,0,0,0.05);">
+      <h2 style="margin-bottom: 1rem;">🔔 Notifications</h2>
+  
+      <% if @notifications %>
+        <ul style="list-style: none;">
+          <% @notifications.each do |note| %>
+            <li style="margin-bottom: 0.5rem; <%= 'font-weight: bold;' unless note.read %>">
+              <%= note.message %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No new notifications.</p>
+      <% end %>
+    </div>
+  </div>
     </div>
 
    
