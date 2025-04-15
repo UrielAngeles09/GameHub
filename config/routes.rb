@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :games, only: [:show, :index]
   get "games/:id/details", to: "games#details", as: "game_details"
 
+  # User signup (fixes new_user_path error)
+  resources :users, only: [:new, :create]
+
   get "gamehub/index"
   resource :session
   resources :passwords, param: :token

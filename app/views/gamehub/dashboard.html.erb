@@ -48,11 +48,16 @@
     nav ul {
       display: flex;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
+    nav ul li {
+      margin-left: 1.5rem;
+    }
 
-
-    nav ul li a, nav ul li form button {
+    nav ul li a,
+    nav ul li form button {
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -90,7 +95,7 @@
       <ul>
         <li><%= link_to "Home", root_path, class: "btn btn-link" %></li>
         <li><%= link_to "Dashboard", dashboard_path, class: "hover:underline" %></li>
-        <li><%= button_to "Logout", session_path, method: :delete %></li>
+        <li><%= button_to "Logout", session_path, method: :delete, form: { style: "display:inline;" } %></li>
       </ul>
     </nav>
   </header>

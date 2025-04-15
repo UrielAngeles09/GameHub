@@ -204,6 +204,16 @@
 
 <body>
 
+  <header>
+    <div class="logo">Game<span>Hub</span></div>
+    <nav>
+      <ul>
+        <li><%= link_to "Home", home_path, class: "btn btn-link" %></li>
+        <li><%= link_to "Dashboard", dashboard_path, class: "hover:underline" %></li>
+        <li><%= button_to "Logout", session_path, method: :delete, form: { style: "display:inline;" } %></li>
+      </ul>
+    </nav>
+  </header>
 
   <div class="container">
     <div class="search-container">
