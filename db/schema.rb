@@ -10,7 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_163824) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_14_195215) do
+  create_table "games", force: :cascade do |t|
+    t.string "title"
+    t.date "release_date"
+    t.string "cover_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "platforms"
+    t.string "buy_link"
+    t.text "easter_eggs"
+    t.string "steam_app_id"
+    t.string "steam_appid"
+    t.string "trailer_url"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.text "body"
+    t.string "link"
+    t.string "external_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"

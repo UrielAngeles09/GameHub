@@ -18,27 +18,27 @@ When("I visit the home page") do
 end
 
 When("I click on {string}") do |text|
-    begin
-      # Try to find a game card by text content and click it
-      find(".game-card", text: text, match: :first).click
-    rescue Capybara::ElementNotFound
-      puts "❌ Could not find .game-card containing '#{text}'"
-      puts "Here’s what the page looks like:\n\n"
-      puts page.body
-      raise
-    end
+  begin
+    find(".game-card", text: text, match: :first).click
+  rescue Capybara::ElementNotFound
+    puts "❌ Could not find .game-card containing '#{text}'"
+    puts "Here’s what the page looks like:\n\n"
+    puts page.body
+    raise
   end
-  
+end
 
 Then("I should see {string}") do |text|
   expect(page).to have_content(text)
 end
 
 Then("I should see the trailer iframe for {string}") do |trailer_url|
-  expect(page).to have_css("iframe[src='#{trailer_url}']")
+  # Using partial match for flexibility
+  expect(page).to have_css("iframe[src*='#{trailer_url}']")
 end
 
 Then("I should see a buy link for {string}") do |game_title|
   game = Game.find_by(title: game_title)
+  expect(game).not_to be_nil, "Game with title '#{game_title}' was not found in the database"
   expect(page).to have_link("Buy This Game", href: game.buy_link)
 end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :games, only: [:show, :index]
+  resources :users, only: [:new, :create] 
+
   get "gamehub/index"
   resource :session
   resources :passwords, param: :token
@@ -7,7 +10,6 @@ Rails.application.routes.draw do
 
   root "gamehub#index"
 
-  # Home & Dashboard views
   get "home", to: "gamehub#home"
   post "home", to: "gamehub#home"
   get "dashboard", to: "gamehub#dashboard"

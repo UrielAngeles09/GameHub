@@ -12,7 +12,7 @@ Feature: GameHub Platform Navigation
 
   Scenario: User views their dashboard
     Given the user is on the GameHub home page
-    When they click the "Dashboard View" button
+    When they click the "Dashboard" button
     Then they should see their personalized dashboard
 
   Scenario: User sees their notifications

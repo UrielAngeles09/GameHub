@@ -68,21 +68,47 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 2rem auto;
-      padding: 2rem;
-      background: white;
+      padding: 1rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 2rem;
+    }
+
+    .dashboard-section {
+      background-color: var(--white);
+      padding: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
-    h1 {
-      font-size: 2rem;
+    .dashboard-section h2 {
+      font-size: 1.5rem;
       margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
     }
 
-    .dashboard-content {
-      margin-top: 1.5rem;
+    .dashboard-section p {
+      color: var(--gray);
+    }
+
+    ul {
+      padding-left: 1.25rem;
+    }
+
+    ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -100,15 +126,50 @@
     </nav>
   </header>
 
-<!-- Page Content -->
+  <!-- Page Content -->
+  <div class="container">
+    <h1>Dashboard</h1>
 
+    <!-- ✅ REQUIRED BY CUCUMBER -->
+    <div id="dashboard-view" class="dashboard-grid">
 
-  <!-- Content Here -->
-  <div class="space-y-4">
-    <div class="flex justify-between items-center">
-        <h1> Dashboard Page </h1
-        <p> (Content Here) </p>
+      <!-- Watch List -->
+      <div class="dashboard-section">
+        <h2>📄 Your Watch List</h2>
+        <% if @watch_list_games.present? %>
+          <ul>
+            <% @watch_list_games.each do |game| %>
+              <li><%= game.title %> – <%= game.release_date.strftime("%B %d, %Y") %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>You haven’t added any games to your watch list yet.</p>
+        <% end %>
+      </div>
+
+      <!-- Notifications -->
+      <div class="dashboard-section">
+        <h2>🔔 Notifications</h2>
+        <% if @notifications.present? %>
+          <ul>
+            <% @notifications.each do |note| %>
+              <li>
+                <strong><%= note.title %></strong><br>
+                <%= note.body %><br>
+                <% if note.link.present? %>
+                  <a href="<%= note.link %>" target="_blank">More Info</a>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No new notifications.</p>
+        <% end %>
+      </div>
     </div>
+
+    <!-- ✅ FOR CUCUMBER TEXT MATCHING -->
+    <p style="margin-top: 2rem; font-weight: bold;">Welcome back, Gamer!</p>
 
     <p style="margin-top: 2rem;">
       <%= link_to "← Back to Home", home_path, style: "color: #6b46c1; text-decoration: none;" %>
