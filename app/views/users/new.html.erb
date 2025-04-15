@@ -1,0 +1,168 @@
+<head>
+    <style>
+        :root {
+            --primary: #6b46c1;
+            --primary-dark: #553c9a;
+            --secondary: #38b2ac;
+            --dark: #1a202c;
+            --gray: #4a5568;
+            --light-gray: #e2e8f0;
+            --white: #ffffff;
+            --light-blue: #89cff0;
+            --cyan: #00ffff;
+            --W: #f7fafc
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f7fafc;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--light-blue);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-container form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-container h1 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .form-container .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-container .btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Game<span>Hub</span></div>
+    </header>
+
+    <div class="form-container">
+        <form action="<%= users_path %>" method="post">
+            <h1>Create an Account</h1>
+            
+            <% if @user.errors.any? %>
+                <div class="error-message">
+                    <h2><%= pluralize(@user.errors.count, "error") %> prevented sign up:</h2>
+                    <ul>
+                        <% @user.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="form-group">
+                <%= label_tag :email_address %>
+                <%= text_field_tag :email_address, @user.email_address, required: true, placeholder: "Enter your email address", class: "input" %>
+            </div>
+
+            <div class="form-group">
+                <%= label_tag :password %>
+                <%= password_field_tag :password, nil, required: true, placeholder: "Enter your password", class: "input" %>
+            </div>
+
+            <div class="form-group">
+                <%= label_tag :password_confirmation %>
+                <%= password_field_tag :password_confirmation, nil, required: true, placeholder: "Confirm your password", class: "input" %>
+            </div>
+
+            <div class="form-group">
+                <%= submit_tag "Create Account", class: "btn" %>
+            </div>
+        </form>
+    </div>
+
+    <div class="link">
+        <%= link_to "Already have an account? Log in", new_session_path %>
+    </div>
+</body>

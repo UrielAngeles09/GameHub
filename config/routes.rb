@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   get "gamehub/index"
   resource :session
   resources :passwords, param: :token
-  resources :games, only: [:show]
+
 
   get "up" => "rails/health#show", as: :rails_health_check
 
   root "gamehub#index"
 
   get "home", to: "gamehub#home"
+
   get "dashboard", to: "gamehub#dashboard"
+
 end

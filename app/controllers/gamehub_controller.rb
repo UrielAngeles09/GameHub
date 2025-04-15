@@ -17,6 +17,10 @@ class GamehubController < ApplicationController
     end
   end
 
+  def gamedetails
+
+  end
+
   def dashboard
     redirect_to new_session_path unless authenticated?
   end

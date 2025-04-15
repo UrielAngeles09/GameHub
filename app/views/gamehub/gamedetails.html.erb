@@ -10,7 +10,6 @@
             --white: #ffffff;
             --light-blue: #89cff0;
             --cyan: #00ffff;
-            --W: #f7fafc
         }
 
         * {
@@ -30,64 +29,64 @@
             color: white;
             padding: 1rem;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: bold;
             display: flex;
             align-items: center;
-            
         }
 
         .logo span {
           color: var(--cyan);
       }
 
-
-      login{
-
-        color: var(--dark);
-        padding: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-       
-    
-      }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+      
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+      
+        nav ul li a {
+          color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
     </style>
 </head>
-
 
 <body>
     <header>
         <div class="logo">Game<span>Hub</span></div>
+
+        <nav>
+            <ul>
+            <li><%= link_to "Home", root_path, class: "hover:underline" %></li>
+            <li><%= link_to "Game Details", gamedetails_path, class: "hover:underline" %></li>
+            <li><%= link_to "Dashboard", dashboard_path, class: "hover:underline" %></li>
+            <li><%= button_to "Logout", session_path, method: :delete %></li>
+            </ul>
+        </nav>
+
     </header>
 </body>
 
 <!-- Page Content -->
 
 
-<login>
-        <h1> Log in Page </h1>
-       
-</login>
-
-<login>
-        <h3> Welcome to GameHub!. :) </h3>
-       
-</login>
-
-<login>
-       <%= button_to "Login", new_session_path, method: :get, class: "btn btn-primary" %>          
-</login>
-<login>
-        <%= button_to "Sign Up", new_user_path, method: :get, class: "btn btn-primary", style: "margin-left: 1rem;" %>
-</login>
-
-
+  <!-- Content Here -->
+  <div class="space-y-4">
+    <div class="flex justify-between items-center">
+        <h1> Game Details Page </h1
+        <p> (Content Here) </p>
+    </div>
 
 </div>
