@@ -1,92 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <style>
-        :root {
-            --primary: #6b46c1;
-            --primary-dark: #553c9a;
-            --secondary: #38b2ac;
-            --dark: #1a202c;
-            --gray: #4a5568;
-            --light-gray: #e2e8f0;
-            --white: #ffffff;
-            --light-blue: #89cff0;
-            --cyan: #00ffff;
-        }
+  <meta charset="UTF-8">
+  <title>GameHub</title>
+  <style>
+    :root {
+      --primary: #6b46c1;
+      --primary-dark: #553c9a;
+      --secondary: #38b2ac;
+      --dark: #1a202c;
+      --gray: #4a5568;
+      --light-gray: #e2e8f0;
+      --white: #ffffff;
+      --light-blue: #89cff0;
+      --cyan: #00ffff;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f7fafc;
-            color: var(--dark);
-        }
-        
-        header {
-            background-color: var(--light-blue);
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
+    body {
+      background-color: #f7fafc;
+      color: var(--dark);
+    }
 
-        .logo span {
-          color: var(--cyan);
-      }
+    header {
+      background-color: var(--light-blue);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-      
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-      
-        nav ul li a {
-          color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-    </style>
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+
+    nav ul li a, nav ul li form button {
+      color: white;
+      background: none;
+      border: none;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .search-container {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .search-bar {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid var(--light-gray);
+      border-radius: 4px 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+
+    .filters {
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      background-color: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--dark);
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .game-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-cover {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .game-info {
+      padding: 1rem;
+    }
+
+    .game-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .game-release {
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-platforms {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .platform-icon {
+      padding: 0.25rem 0.5rem;
+      background-color: var(--gray);
+      border-radius: 12px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <div class="logo">Game<span>Hub</span></div>
-
-        <nav>
-            <ul>
-            <li><%= link_to "Home", root_path, class: "hover:underline" %></li>
-            <li><%= link_to "Game Details", gamedetails_path, class: "hover:underline" %></li>
-            <li><%= link_to "Dashboard", dashboard_path, class: "hover:underline" %></li>
-            <li><%= button_to "Logout", session_path, method: :delete %></li>
-            </ul>
-        </nav>
-
-    </header>
-</body>
-
-<!-- Page Content -->
 
 
-  <!-- Content Here -->
-  <div class="space-y-4">
-    <div class="flex justify-between items-center">
-        <h1> Home Page </h1
-        <p> (Content Here) </p>
+  <div class="container">
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for games...">
+        <button>Search</button>
+      </div>
     </div>
 
-</div>
+    <div class="section-title">Trending Games</div>
+
+    <!-- Platform Filter Buttons -->
+    <div class="filters">
+      <% platforms = ["All Platforms", "PlayStation 5", "Xbox Series X", "Nintendo Switch", "PC", "Mobile"] %>
+      <% platforms.each do |platform| %>
+        <% active = @selected_platform == platform || (@selected_platform == "All Platforms" && platform == "All Platforms") %>
+        <%= link_to platform, home_path(platform: (platform == "All Platforms" ? nil : platform)), class: "filter-btn #{'active' if active}" %>
+      <% end %>
+    </div>
+
+    <% if @games.present? %>
+      <div class="games-grid" id="trending-games">
+        <% @games.each do |game| %>
+          <%= link_to game_path(game), class: "game-card", 'data-testid': 'game-card' do %>
+            <div class="game-cover" style="background-image: url('<%= game.cover_url.presence || asset_path('default_game.jpg') %>');"></div>
+            <div class="game-info">
+              <div class="game-title"><%= game.title %></div>
+              <div class="game-release">Release: <%= game.release_date.strftime("%B %d, %Y") %></div>
+              <div class="game-platforms">
+                <% game.platform_list.each do |platform| %>
+                  <div class="platform-icon"><%= platform %></div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p>No games available at the moment.</p>
+    <% end %>
+  </div>
+</body>
+</html>

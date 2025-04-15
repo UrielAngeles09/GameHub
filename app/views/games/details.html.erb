@@ -1,0 +1,41 @@
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a202c;">
+  <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; color: #6b46c1; text-align: center;">
+    <%= @game.title %>
+  </h1>
+
+  <img src="<%= @game.cover_url.presence || asset_path('default_game.jpg') %>" alt="<%= @game.title %> cover" style="width: 100%; max-height: 450px; object-fit: cover; border-radius: 10px; margin-bottom: 2rem;">
+
+  <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+    <strong>Release Date:</strong> <%= @game.release_date.strftime("%B %d, %Y") %>
+  </p>
+
+  <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+    <strong>Platforms:</strong>
+    <% @game.platform_list.each do |platform| %>
+      <span style="display: inline-block; background-color: #4a5568; color: white; padding: 0.25rem 0.6rem; border-radius: 12px; font-size: 0.85rem; margin-right: 0.5rem;">
+        <%= platform %>
+      </span>
+    <% end %>
+  </p>
+
+  <% if @game.buy_link.present? %>
+    <p style="margin: 1.5rem 0;">
+      <a href="<%= @game.buy_link %>" target="_blank" style="display: inline-block; padding: 0.75rem 1.5rem; background-color: #6b46c1; color: white; text-decoration: none; font-weight: bold; border-radius: 8px; transition: background-color 0.2s;">
+        Buy This Game
+      </a>
+    </p>
+  <% end %>
+
+  <hr style="margin: 2rem 0; border: none; height: 1px; background-color: #e2e8f0;">
+
+  <h2 style="font-size: 1.75rem; color: #6b46c1; margin-bottom: 1rem;">Easter Eggs</h2>
+  <% if @game.easter_eggs.present? %>
+    <pre style="white-space: pre-wrap; line-height: 1.6; font-size: 1rem; color: #2d3748;"><%= @game.easter_eggs %></pre>
+  <% else %>
+    <p style="font-size: 1rem; color: #718096;">No known easter eggs for this game... yet! 🥚</p>
+  <% end %>
+
+  <p style="margin-top: 2rem; text-align: center;">
+    <%= link_to "← Back to Home", home_path, style: "color: #6b46c1; text-decoration: none; font-weight: bold;" %>
+  </p>
+</div>
