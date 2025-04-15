@@ -1,11 +1,160 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<head>
+  <style>
+    :root {
+      --primary: #6b46c1;
+      --primary-dark: #553c9a;
+      --secondary: #38b2ac;
+      --dark: #1a202c;
+      --gray: #4a5568;
+      --light-gray: #e2e8f0;
+      --white: #ffffff;
+      --light-blue: #89cff0;
+      --cyan: #00ffff;
+      --W: #f7fafc;
+    }
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<%= link_to "Forgot password?", new_password_path %>
+    body {
+      background-color: var(--W);
+      color: var(--dark);
+    }
+
+    header {
+      background-color: var(--light-blue);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .login-container h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .login-container h3 {
+      margin-bottom: 2rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    .login-form {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .error-message {
+      color: red;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .link {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .link a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Game<span>Hub</span></div>
+  </header>
+
+  <div class="login-container">
+    <h1>Log In</h1>
+    <h3>Welcome back to GameHub! 🎮</h3>
+
+    <div class="login-form">
+      <% if flash[:alert] %>
+        <div class="error-message"><%= flash[:alert] %></div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div style="color: green; margin-bottom: 1rem;"><%= flash[:notice] %></div>
+      <% end %>
+
+      <%= form_with url: session_path, local: true do |form| %>
+        <div class="form-group">
+          <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit "Sign In", class: "btn" %>
+        </div>
+      <% end %>
+
+      <div class="link">
+        <%= link_to "Forgot password?", new_password_path %>
+      </div>
+    </div>
+  </div>
+</body>
