@@ -1,8 +1,123 @@
-<h1>Forgot your password?</h1>
+<head>
+  <style>
+    :root {
+      --primary: #6b46c1;
+      --primary-dark: #553c9a;
+      --secondary: #38b2ac;
+      --dark: #1a202c;
+      --gray: #4a5568;
+      --light-gray: #e2e8f0;
+      --white: #ffffff;
+      --light-blue: #89cff0;
+      --cyan: #00ffff;
+      --W: #f7fafc;
+    }
 
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-<%= form_with url: passwords_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.submit "Email reset instructions" %>
-<% end %>
+    body {
+      background-color: var(--W);
+      color: var(--dark);
+    }
+
+    header {
+      background-color: var(--light-blue);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .forgot-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1rem;
+    }
+
+    .forgot-container h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .forgot-form {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .forgot-form input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .error-message {
+      color: red;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Game<span>Hub</span></div>
+  </header>
+
+  <div class="forgot-container">
+    <h1>Forgot your password?</h1>
+
+    <div class="forgot-form">
+      <% if flash[:alert] %>
+        <div class="error-message"><%= flash[:alert] %></div>
+      <% end %>
+
+      <%= form_with url: passwords_path, local: true do |form| %>
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+        <%= form.submit "Email reset instructions", class: "btn" %>
+      <% end %>
+    </div>
+  </div>
+</body>
