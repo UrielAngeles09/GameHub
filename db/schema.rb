@@ -15,13 +15,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_14_195215) do
     t.string "title"
     t.date "release_date"
     t.string "cover_url"
+    t.integer "steam_app_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "platforms"
     t.string "buy_link"
     t.text "easter_eggs"
-    t.string "steam_app_id"
-    t.string "steam_appid"
     t.string "trailer_url"
   end
 
