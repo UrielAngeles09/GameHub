@@ -1,0 +1,59 @@
+<div style="max-width: 800px; margin: 2rem auto; padding: 2rem; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+  <!-- Game Title -->
+  <h1 style="font-size: 2rem; margin-bottom: 1.5rem; color: #2d3748;"><%= @game.title %></h1>
+
+  <!-- Game Cover -->
+  <div style="text-align: center;">
+    <img src="<%= @game.cover_url.presence || asset_path('default_game.jpg') %>"
+         alt="<%= @game.title %> cover"
+         style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  </div>
+
+  <!-- Release Date -->
+  <p style="font-size: 1rem; margin-bottom: 0.5rem;"><strong>📅 Release Date:</strong> <%= @game.release_date.strftime("%B %d, %Y") %></p>
+
+  <!-- Platforms -->
+  <% if @game.platform_list.any? %>
+    <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>🎮 Platforms:</strong> <%= @game.platform_list.join(", ") %></p>
+  <% else %>
+    <p style="font-size: 1rem; margin-bottom: 1rem;"><strong>🎮 Platforms:</strong> Unknown</p>
+  <% end %>
+
+  <!-- Buy Link -->
+  <% if @game.buy_link.present? %>
+    <p style="margin-top: 1rem;">
+      <a href="<%= @game.buy_link %>" target="_blank"
+         style="display: inline-block; padding: 0.75rem 1.25rem; background-color: #6b46c1; color: white; font-weight: bold; text-decoration: none; border-radius: 8px;">
+        🛒 Buy This Game
+      </a>
+    </p>
+  <% end %>
+
+  <!-- Easter Eggs Section -->
+  <hr style="margin: 2rem 0; border-color: #e2e8f0;">
+  <h2 style="font-size: 1.5rem; margin-bottom: 0.75rem; color: #2d3748;">🥚 Easter Eggs</h2>
+  <% if @game.easter_eggs.present? %>
+    <p style="white-space: pre-wrap; line-height: 1.6; color: #4a5568;"><%= @game.easter_eggs %></p>
+  <% else %>
+    <p style="color: #718096;">No known easter eggs for this game... yet!</p>
+  <% end %>
+
+  <!-- Trailer Section -->
+  <hr style="margin: 2rem 0; border-color: #e2e8f0;">
+  <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: #2d3748;">🎬 Watch the Trailer</h2>
+  <% if @game.trailer_url.present? %>
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px;">
+      <iframe src="<%= @game.trailer_url %>" frameborder="0" allowfullscreen
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      </iframe>
+    </div>
+  <% else %>
+    <p style="color: #718096;">Trailer coming soon...</p>
+  <% end %>
+
+  <!-- Back to Home -->
+  <p style="margin-top: 2.5rem;">
+    <%= link_to "← Back to Home", home_path, style: "color: #6b46c1; text-decoration: none; font-weight: bold;" %>
+  </p>
+</div>
