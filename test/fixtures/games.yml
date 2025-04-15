@@ -1,6 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+<<<<<<< HEAD
   title: MyString
   release_date: 2025-04-13
   cover_url: MyString
@@ -9,3 +10,11 @@ two:
   title: MyString
   release_date: 2025-04-13
   cover_url: MyString
+=======
+  name: MyString
+  steam_app_id: 1
+
+two:
+  name: MyString
+  steam_app_id: 1
+>>>>>>> dashboard

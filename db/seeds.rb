@@ -77,3 +77,9 @@ Game.create!(
     • A glitch portal reveals a secret timeline.
   TEXT
 )
+
+Notification.create!(
+  title: "Your watched game 'Elden Ring DLC' now has a trailer!",
+  body: "FromSoftware has released a new trailer for the Shadow of the Erdtree DLC.",
+  link: "https://www.youtube.com/watch?v=V9V7XX0QSRs",
+)

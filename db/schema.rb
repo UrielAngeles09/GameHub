@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_14_010243) do
-  create_table "games", force: :cascade do |t|
-    t.string "title"
-    t.date "release_date"
-    t.string "cover_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "platforms"
-    t.string "buy_link"
-    t.text "easter_eggs"
-    t.string "steam_app_id"
-    t.string "steam_appid"
-    t.string "trailer_url"
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2025_04_10_163824) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -42,5 +28,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_14_010243) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  create_table "watch_list_items", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_watch_list_items_on_game_id"
+    t.index ["user_id"], name: "index_watch_list_items_on_user_id"
+  end
+
+  add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "watch_list_items", "games"
+  add_foreign_key "watch_list_items", "users"
 end
