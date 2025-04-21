@@ -1,7 +1,3 @@
-# Create a user to associate with games
-user = User.create!(email: "example@example.com", password: "password", password_confirmation: "password")
-
-# Now create the games and associate them with the user
 Game.create!(
   title: "Elden Ring 2",
   release_date: Date.new(2025, 3, 15),
