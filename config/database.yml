@@ -34,3 +34,7 @@ test:
 # is mounted as a persistent Docker volume in config/deploy.yml.
 production:
   <<: *default
+  database: gamehub_db_a91l
+  username: gamehub_db_a91l_user
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
