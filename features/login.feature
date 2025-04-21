@@ -1,20 +1,63 @@
-Feature: GameHub Platform Navigation
+Feature: User Login
 
-  Scenario: User visits the home page
-    Given the user is on the GameHub home page
-    Then they should see trending games
-    And they should see upcoming releases
+ 
 
-  Scenario: User clicks on a game
-    Given the user is on the GameHub home page
-    When they click on "Elden Ring 2"
-    Then they should see the game detail view for "Elden Ring 2"
+  Background:
 
-  Scenario: User views their dashboard
-    Given the user is on the GameHub home page
-    When they click the "Dashboard" button
-    Then they should see their personalized dashboard
+    Given the user "ua@test.com" with password "123456" exists
 
-  Scenario: User sees their notifications
-    Given the user is on the dashboard
-    Then they should see a notification about "Elden Ring 2"
+ 
+
+  Scenario: Successful login with valid credentials
+
+    Given I am on the login page
+
+    When I fill in login "email_address" with "ua@test.com"
+
+    And I fill in "password" with "123456"
+
+    And I click on login "Sign In"
+
+    Then I should be redirected to the home page
+
+ 
+
+ 
+
+  Scenario: Login with incorrect password
+
+    Given I am on the login page
+
+    When I fill in login "email_address" with "ua@test.com"
+
+    And I fill in "password" with "wrongpassword"
+
+    And I click on login "Sign In"
+
+    Then I should see "Try another email address or password."
+
+ 
+
+  Scenario: Login with non-existing email
+
+    Given I am on the login page
+
+    When I fill in login "email_address" with "doesnotexist@example.com"
+
+    And I fill in "password" with "123456"
+
+    And I click on login "Sign In"
+
+    Then I should see "Try another email address or password."
+
+ 
+
+  Scenario: Attempt to login with blank credentials
+
+    Given I am on the login page
+
+    When I click on login "Sign In"
+
+    Then I should see "Try another email address or password."
+
+    And I should see "Try another email address or password."
