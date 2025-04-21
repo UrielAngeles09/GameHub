@@ -10,8 +10,7 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Hidden dragon boss if you return to the temple after sunset.
     • New armor set unlocked by defeating every NPC.
-  TEXT,
-  user: user # Associate the game with the user
+  TEXT
 )
 
 Game.create!(
@@ -24,8 +23,7 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Secret tune unlocks fairy portal.
     • Majora's Mask appears in a cave.
-  TEXT,
-  user: user # Associate the game with the user
+  TEXT
 )
 
 Game.create!(
@@ -38,8 +36,7 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Playable grunt mode.
     • Cortana's hidden voice line in mission 5.
-  TEXT,
-  user: user # Associate the game with the user
+  TEXT
 )
 
 Game.create!(
@@ -52,8 +49,7 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Moogles will dance if you idle long enough.
     • FF7 posters hidden in scene 3.
-  TEXT,
-  user: user # Associate the game with the user
+  TEXT
 )
 
 Game.create!(
@@ -66,8 +62,7 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Pet the dog 100 times to unlock a golden bone.
     • Mermaid cutscene appears on rainy Wednesdays.
-  TEXT,
-  user: user # Associate the game with the user
+  TEXT
 )
 
 Game.create!(
@@ -80,13 +75,5 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Blade Runner reference in Alley 9.
     • A glitch portal reveals a secret timeline.
-  TEXT,
-  user: user # Associate the game with the user
-)
-
-# Create a notification
-Notification.create!(
-  title: "Your watched game 'Elden Ring DLC' now has a trailer!",
-  body: "FromSoftware has released a new trailer for the Shadow of the Erdtree DLC.",
-  link: "https://www.youtube.com/watch?v=V9V7XX0QSRs"
+  TEXT
 )
