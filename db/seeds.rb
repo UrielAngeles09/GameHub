@@ -1,5 +1,7 @@
-Game.destroy_all
+# Create a user to associate with games
+user = User.create!(email: "example@example.com", password: "password", password_confirmation: "password")
 
+# Now create the games and associate them with the user
 Game.create!(
   title: "Elden Ring 2",
   release_date: Date.new(2025, 3, 15),
@@ -10,7 +12,8 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Hidden dragon boss if you return to the temple after sunset.
     • New armor set unlocked by defeating every NPC.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
 Game.create!(
@@ -23,7 +26,8 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Secret tune unlocks fairy portal.
     • Majora's Mask appears in a cave.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
 Game.create!(
@@ -36,7 +40,8 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Playable grunt mode.
     • Cortana's hidden voice line in mission 5.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
 Game.create!(
@@ -49,7 +54,8 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Moogles will dance if you idle long enough.
     • FF7 posters hidden in scene 3.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
 Game.create!(
@@ -62,7 +68,8 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Pet the dog 100 times to unlock a golden bone.
     • Mermaid cutscene appears on rainy Wednesdays.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
 Game.create!(
@@ -75,11 +82,13 @@ Game.create!(
   easter_eggs: <<~TEXT
     • Blade Runner reference in Alley 9.
     • A glitch portal reveals a secret timeline.
-  TEXT
+  TEXT,
+  user: user # Associate the game with the user
 )
 
+# Create a notification
 Notification.create!(
   title: "Your watched game 'Elden Ring DLC' now has a trailer!",
   body: "FromSoftware has released a new trailer for the Shadow of the Erdtree DLC.",
-  link: "https://www.youtube.com/watch?v=V9V7XX0QSRs",
+  link: "https://www.youtube.com/watch?v=V9V7XX0QSRs"
 )
