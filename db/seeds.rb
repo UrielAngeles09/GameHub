@@ -1,3 +1,5 @@
+Game.destroy_all
+
 Game.create!(
   title: "Elden Ring 2",
   release_date: Date.new(2025, 3, 15),
